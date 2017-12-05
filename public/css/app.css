@@ -9811,3 +9811,9 @@ nav ul.dropdown-menu .dropdown-item:hover {
   color: #31231e !important;
 }
 
+.pagination li {
+  font-size: 1rem !important;
+  margin-right: 3px !important;
+  margin-left: 3px !important;
+}
+
