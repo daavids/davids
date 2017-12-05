@@ -24,7 +24,7 @@
                         <tbody>
                             <tr>
                                 <td class='align-middle'>
-                                    <a href='/posts/{{$post->id}}'>
+                                    <a href='/posts/{{$post->id}}' class='dashPostLink'>
                                         <strong>{{$post->title}}</strong>
                                     </a>
                                 </td>
