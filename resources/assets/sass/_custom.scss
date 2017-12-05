@@ -1,0 +1,87 @@
+$mainColor: #31231e;
+$secondaryColor: #e2f1af;
+$darkBtn: #343a40;
+$mainBorder2px: 2px solid $mainColor;
+$mainBorder1px: 1px solid $mainColor;
+
+html, body {
+    height: 100% !important;
+}
+
+body {
+    padding-top: 60px !important;
+    padding-bottom: 20px !important;
+
+    #app {
+        margin-bottom: 20px !important;
+    }
+}
+
+img {
+    max-width: 100%;
+    width: 100%;
+}
+
+hr {
+    border-top: $mainBorder1px;
+}
+
+h1, h2, h3 {
+    color: $mainColor !important;
+
+    a {
+        color: $mainColor !important;
+        text-decoration: none !important;
+    }
+}
+
+//navbar
+nav {
+    background-color: $mainColor !important; 
+    // navbar links
+    li.nav-item > a, .navbar-brand {
+        color: white !important;
+        text-decoration: none !important;
+        &:hover {
+            color: $secondaryColor !important;
+        }
+    }
+    // collapsed navbar icon
+    .navbar-toggler {
+        border: 2px solid white !important;
+    }
+    // right-corner dropdown
+    ul.dropdown-menu {
+        border: $mainBorder2px !important;
+        padding: 0 !important;
+
+        .dropdown-divider {
+            color: $mainColor !important;
+            border-top: $mainBorder2px !important;
+            margin: 0 !important;
+        }
+        // dropdown links
+        .dropdown-item {
+            color: black !important;
+            &:hover {
+                background-color: $secondaryColor !important;
+            }
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+        }
+    }   
+}
+//dashboard
+.card-header {
+    background-color: $mainColor !important;
+    color: white !important;
+}
+.table-hover {
+    th{
+        background-color: $darkBtn !important;
+        color: white !important;
+    }
+    tr:hover {
+        background-color: $secondaryColor !important;
+    }
+}
