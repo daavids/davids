@@ -17,7 +17,7 @@
             <li class='nav-item'><a class='nav-link' href='#'>Theme</a></li>
             <li class='nav-item'><a class='nav-link' href='/posts'>Blog</a></li>
             <li class='nav-item'><a class='nav-link' href='#'>Games</a></li>
-            <li class='nav-item'><a class='nav-link' href='#'>Websites</a></li>
+            <li class='nav-item'><a class='nav-link' href='#'>Projects</a></li>
             <li class='nav-item'><a class='nav-link' href='/laravel'>Laravel</a></li>
         </ul>
 
