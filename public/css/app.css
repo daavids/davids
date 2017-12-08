@@ -12848,6 +12848,17 @@ nav ul.dropdown-menu .dropdown-item:hover {
   background-color: #eff2c0 !important;
 }
 
+nav.footer {
+  -webkit-box-pack: middle !important;
+      -ms-flex-pack: middle !important;
+          justify-content: middle !important;
+}
+
+nav.footer h5 {
+  color: white !important;
+  margin-bottom: 0 !important;
+}
+
 .card-header {
   background-color: #080f0f !important;
   color: white !important;

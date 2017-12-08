@@ -35,7 +35,7 @@ h1, h2, h3 {
     }
 }
 
-//navbar
+//navbars(footer & header)
 nav {
     background-color: $mainColor !important; 
     // navbar links
@@ -68,6 +68,12 @@ nav {
             }
             padding-top: 10px !important;
             padding-bottom: 10px !important;
+        }
+    }
+    &.footer {        
+        h5 {
+            color: white !important;
+            margin-bottom: 0 !important;
         }
     }   
 }
