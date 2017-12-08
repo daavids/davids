@@ -2,7 +2,7 @@
 
 @section('content')
     <br>
-    <a href='javascript:history.back()' class= 'btn btn-dark'>Go back</a>
+    <a href='javascript:history.back()' class='btn btn-dark'>Go back</a>
     <br><br> 
     <h1>{{$post->title}}</h1>     
     <img style='width:100%' src='/storage/cover_images/{{$post->cover_image}}'>           
@@ -13,12 +13,17 @@
     <br>
     @if(!Auth::guest())
         @if(Auth::user()->id == $post->user_id)
-            <a href="/posts/{{$post->id}}/edit" class="btn btn-dark">Edit</a>
+            <a href='/posts/{{$post->id}}/edit' 
+                class='btn btn-dark float-left'>
+                <i class='fa fa-pencil'></i>
+            </a>
             {!!Form::open(['action' => ['PostsController@destroy', $post->id],
-                            'method' => 'POST', 'class' => 'float-right'])!!}
+                            'method' => 'POST'])!!}
                 {{Form::hidden('_method', 'DELETE')}}
-                {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+                {{Form::button('<i class=\'fa fa-trash\'></i>', 
+                                ['type' => 'submit', 'class' => 'btn btn-danger ml-2'])}}
             {!!Form::close()!!}
+
         @endif
     @endif
 @endsection

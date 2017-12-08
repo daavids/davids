@@ -1,5 +1,5 @@
-$mainColor: #31231e;
-$secondaryColor: #e2f1af;
+$mainColor: #080f0f;
+$secondaryColor: #eff2c0;
 $darkBtn: #343a40;
 $mainBorder2px: 2px solid $mainColor;
 $mainBorder1px: 1px solid $mainColor;
@@ -76,7 +76,7 @@ nav {
     background-color: $mainColor !important;
     color: white !important;
 }
-.table-hover {
+.dashTable {
     th{
         background-color: $darkBtn !important;
         color: white !important;
@@ -88,8 +88,9 @@ nav {
 .dashPostLink {
     color: $mainColor !important;
 }
+//blog page
 .pagination li {
-    font-size: 1rem !important;
+    font-size: 1.2rem !important;
     margin-right: 3px !important;
     margin-left: 3px !important;
 }

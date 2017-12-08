@@ -12,11 +12,10 @@
                 <br>
                 <h3>Your Blog Posts</h3>
                 @if(count($posts) > 0)
-                    <table class='table table-hover'>
+                    <table class='table table-hover dashTable'>
                         <thead>
                             <tr>
                                 <th>Title</th>
-                                <th></th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -28,14 +27,18 @@
                                         <strong>{{$post->title}}</strong>
                                     </a>
                                 </td>
-                                <td><a href='/posts/{{$post->id}}/edit' 
-                                        class='btn btn-dark float-right'>Edit</a></td>
                                 <td>
                                     {!!Form::open(['action' => ['PostsController@destroy', $post->id], 
-                                                    'method' => 'POST', 'class' => 'float-right'])!!}
+                                                    'method' => 'POST', 'class' => 'float-right ml-2'])!!}
                                         {{Form::hidden('_method', 'DELETE')}}
-                                        {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+                                        {{Form::button('<i class=\'fa fa-trash\'></i>', 
+                                                        ['type' => 'submit', 'class' => 'btn btn-danger'])}}
                                     {!!Form::close()!!}
+
+                                    <a href='/posts/{{$post->id}}/edit' 
+                                        class='btn btn-dark float-right ml-5'>
+                                        <i class='fa fa-pencil' aria-hidden='true'></i>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>

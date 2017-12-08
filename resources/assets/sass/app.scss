@@ -7,5 +7,9 @@
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
+// Font-awesome icons
+// https://stackoverflow.com/questions/43451509/how-to-install-font-awesome-in-laravel-mix
+@import '~font-awesome/scss/font-awesome.scss';
+
 // Custom
 @import 'custom';
