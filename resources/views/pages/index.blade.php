@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
+@section('title', 'Index')
+
 @section('content')
-        <h1>{{$title}}</h1>
-        <br>
+        <h1>{{$heading}}</h1>
         @if(count($technologies) > 0)
             <h3>Languages:</h3> 
         	<ul class="list-group">

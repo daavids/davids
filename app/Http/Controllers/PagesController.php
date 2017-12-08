@@ -8,14 +8,14 @@ class PagesController extends Controller
 {
     public function index() {
         $data = array(
-            'title'=>'David',
+            'heading'=>'Welcome',
             'technologies'=>['PHP7 (Laravel)', 
                             'HTML5', 
                             'CSS3 (SASS, Bootstrap4)', 
                             'JavaScript (jQuery, Vue)',
                             'MySQL'],
             'todo'=>['Games - Tic-Tac-Toe, Minesweeper, ???', 
-                    'Website section', 
+                    'Project section', 
                     'Template customisation',
                     'Design',
                     'Remake landing page'],
@@ -23,9 +23,7 @@ class PagesController extends Controller
                     'User registration',
                     'Navigation (kinda)']
         );
-        return view('pages.index')->with($data);
-    }
-    public function laravel() {
-        return view('welcome');
+        $title = 'Home';
+        return view('pages.index')->with($data)->with($title);
     }
 }

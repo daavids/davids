@@ -12,7 +12,8 @@
 */
 // controller way
 Route::get('/', 'PagesController@index');
-Route::get('/laravel', 'PagesController@laravel');
+
+Route::view('/laravel', 'welcome');
 
 /* return view way
 Route::get('/', function() {
@@ -27,7 +28,7 @@ Route::get('/users/{id}', function($id) {
 Route::resource('posts', 'PostsController');
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index');
 
 
 

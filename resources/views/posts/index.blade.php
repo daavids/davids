@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Posts')
+
 @section('content')
     <h1>Posts</h1>
     @if(count($posts) > 0)

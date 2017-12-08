@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $post->title. ' - edit')
+
 @section('content')
     <br>
     <a href='javascript:history.back()' class= 'btn btn-dark'>Go back</a>

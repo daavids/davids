@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Create post')
+
 @section('content')
     <br>
     <a href='javascript:history.back()' class= 'btn btn-dark'>Go back</a>

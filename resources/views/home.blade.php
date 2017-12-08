@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Dashboard')
+
 @section('content')
 <div class='row mt-5'>
     <div class='col-md-8 offset-md-2'>

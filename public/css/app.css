@@ -12779,7 +12779,6 @@ body {
 
 body {
   padding-top: 60px !important;
-  padding-bottom: 20px !important;
 }
 
 body #app {
@@ -12849,9 +12848,7 @@ nav ul.dropdown-menu .dropdown-item:hover {
 }
 
 nav.footer {
-  -webkit-box-pack: middle !important;
-      -ms-flex-pack: middle !important;
-          justify-content: middle !important;
+  width: 100%;
 }
 
 nav.footer h5 {

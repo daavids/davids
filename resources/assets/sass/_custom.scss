@@ -10,7 +10,6 @@ html, body {
 
 body {
     padding-top: 60px !important;
-    padding-bottom: 20px !important;
 
     #app {
         margin-bottom: 20px !important;
@@ -70,7 +69,8 @@ nav {
             padding-bottom: 10px !important;
         }
     }
-    &.footer {        
+    &.footer {
+        width: 100%;      
         h5 {
             color: white !important;
             margin-bottom: 0 !important;
