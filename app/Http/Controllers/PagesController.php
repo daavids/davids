@@ -29,7 +29,7 @@ class PagesController extends Controller
     public function games() {
         $data = array(
             'heading'=>'HTML5 and JavaScript games',
-            'games'=>['Tic-Tac-Toe']
+            'games'=>['Tic-Tac-Toe', 'Minesweeper']
         );
         return view('pages.games')->with($data);
     }

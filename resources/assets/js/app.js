@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('tic-tac-toe', require('./components/TicTacToe.vue'));
+Vue.component('minesweeper', require('./components/Minesweeper.vue'));
 
 const app = new Vue({
     el: '#app'

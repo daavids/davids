@@ -34,6 +34,10 @@ Route::get('/tic-tac-toe', function() {
     return view('pages.games.tictactoe');
 });
 
+Route::get('/minesweeper', function() {
+    return view('pages.games.minesweeper');
+});
+
 // About Laravel
 Route::view('/laravel', 'welcome');
 
