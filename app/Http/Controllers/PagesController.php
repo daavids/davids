@@ -26,4 +26,10 @@ class PagesController extends Controller
         $title = 'Home';
         return view('pages.index')->with($data)->with($title);
     }
+
+    public function games() {
+        $title = 'Games';
+        return view('pages.games')->with($title);
+
+    }
 }

@@ -13,6 +13,8 @@
 // controller way
 Route::get('/', 'PagesController@index');
 
+Route::get('/games', 'PagesController@games');
+
 Route::view('/laravel', 'welcome');
 
 /* return view way
