@@ -12880,3 +12880,34 @@ nav.footer h5 {
   margin-left: 3px !important;
 }
 
+.gameTable {
+  width: 50% !important;
+}
+
+.gameTable tr {
+  width: 100% !important;
+}
+
+.gameTable tr:nth-of-type(3) td {
+  border-bottom-color: transparent;
+}
+
+.gameTable td {
+  width: 33.333% !important;
+  border: 1px solid #080f0f;
+}
+
+.gameTable td:first-of-type {
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+
+.gameTable td:nth-of-type(2) {
+  border-top-color: transparent;
+}
+
+.gameTable td:nth-of-type(3) {
+  border-right-color: transparent;
+  border-top-color: transparent;
+}
+

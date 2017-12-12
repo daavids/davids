@@ -10,13 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// controller way
+/* return controller way
 Route::get('/', 'PagesController@index');
-
-Route::get('/games', 'PagesController@games');
-
-Route::view('/laravel', 'welcome');
-
+*/
 /* return view way
 Route::get('/', function() {
 	return view('pages.index');
@@ -27,6 +23,21 @@ Route::get('/users/{id}', function($id) {
     return 'This is user '.$id;
 });
 */
+
+// Home
+Route::get('/', 'PagesController@index');
+
+// Games
+Route::get('/games', 'PagesController@games');
+
+Route::get('/tic-tac-toe', function() {
+    return view('pages.games.tictactoe');
+});
+
+// About Laravel
+Route::view('/laravel', 'welcome');
+
+
 Route::resource('posts', 'PostsController');
 Auth::routes();
 

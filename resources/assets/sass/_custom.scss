@@ -100,3 +100,30 @@ nav {
     margin-right: 3px !important;
     margin-left: 3px !important;
 }
+//tic-tac-toe
+.gameTable {
+    width: 50% !important; 
+    tr {
+        width: 100% !important;
+        
+        &:nth-of-type(3) td {
+            border-bottom-color: transparent;
+        }
+    }
+    td {
+        width: 33.333% !important;
+        border: $mainBorder1px;
+
+        &:first-of-type {
+            border-left-color: transparent;
+            border-top-color: transparent;
+        }
+        &:nth-of-type(2) {
+            border-top-color: transparent;
+        }
+        &:nth-of-type(3) {
+            border-right-color: transparent;
+            border-top-color: transparent;
+        }        
+    }
+}

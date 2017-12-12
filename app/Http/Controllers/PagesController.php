@@ -23,13 +23,14 @@ class PagesController extends Controller
                     'User registration',
                     'Navigation (kinda)']
         );
-        $title = 'Home';
-        return view('pages.index')->with($data)->with($title);
+        return view('pages.index')->with($data);
     }
 
     public function games() {
-        $title = 'Games';
-        return view('pages.games')->with($title);
-
+        $data = array(
+            'heading'=>'HTML5 and JavaScript games',
+            'games'=>['Tic-Tac-Toe']
+        );
+        return view('pages.games')->with($data);
     }
 }
