@@ -72,7 +72,12 @@ export default {
         chooseSymbol: function(symbol) {
             this.player.symbol = symbol;
             this.player.chosen = true;
-            symbol == 'X' ? this.ai.symbol = 'O' : this.ai.symbol = 'X'; 
+            if (symbol == 'O') {
+                this.ai.symbol = 'X';
+                this.randomTurn();
+            } else {
+                this.ai.symbol = 'O'
+            }
         },
         styleTable: function(height) {
             // make height match width
@@ -98,6 +103,19 @@ export default {
         },
         switchTurns: function() {
             this.game.turn == 'X' ? this.game.turn = 'O' : this.game.turn = 'X';
+            if (this.game.turn != this.player.symbol) {
+                this.randomTurn();
+            }
+        },
+        randomTurn: function() {
+            let emptyCells = [];
+            for (let i = 0; i < this.game.board.length; i++) {
+                if (this.game.board[i] == '') {
+                    emptyCells.push(i);
+                }
+            }
+            let randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+            this.tryTurn(randomCell);
         },
         checkResult: function(symbol) {
             if (this.checkWinner(symbol)) {

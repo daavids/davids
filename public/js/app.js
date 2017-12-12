@@ -44873,7 +44873,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         chooseSymbol: function chooseSymbol(symbol) {
             this.player.symbol = symbol;
             this.player.chosen = true;
-            symbol == 'X' ? this.ai.symbol = 'O' : this.ai.symbol = 'X';
+            if (symbol == 'O') {
+                this.ai.symbol = 'X';
+                this.randomTurn();
+            } else {
+                this.ai.symbol = 'O';
+            }
         },
         styleTable: function styleTable(height) {
             // make height match width
@@ -44898,6 +44903,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         switchTurns: function switchTurns() {
             this.game.turn == 'X' ? this.game.turn = 'O' : this.game.turn = 'X';
+            if (this.game.turn != this.player.symbol) {
+                this.randomTurn();
+            }
+        },
+        randomTurn: function randomTurn() {
+            var emptyCells = [];
+            for (var i = 0; i < this.game.board.length; i++) {
+                if (this.game.board[i] == '') {
+                    emptyCells.push(i);
+                }
+            }
+            var randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+            this.tryTurn(randomCell);
         },
         checkResult: function checkResult(symbol) {
             if (this.checkWinner(symbol)) {
