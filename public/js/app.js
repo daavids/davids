@@ -44834,6 +44834,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -44847,7 +44855,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 symbol: ''
             },
             game: {
-                turn: ''
+                turn: 'X',
+                turnCount: 0,
+                board: ['', '', '', '', '', '', '', '', ''],
+                endMessage: '',
+                endGame: false
             }
         };
     },
@@ -44870,6 +44882,81 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             for (var i = 0; i < 3; i++) {
                 document.getElementsByTagName('tr')[i].style.height = realHeight;
             }
+        },
+        tryTurn: function tryTurn(cell) {
+            if (!this.player.chosen) {
+                alert('Choose your symbol first!');
+            } else if (this.game.endGame) {
+                alert('Game has ended already!');
+            } else if (this.game.board[cell] == '') {
+                this.game.board[cell] = this.game.turn;
+                ++this.game.turnCount;
+                this.checkResult(this.game.turn);
+            } else {
+                alert('Cell already filled, pick an empty one!');
+            }
+        },
+        switchTurns: function switchTurns() {
+            this.game.turn == 'X' ? this.game.turn = 'O' : this.game.turn = 'X';
+        },
+        checkResult: function checkResult(symbol) {
+            if (this.checkWinner(symbol)) {
+                if (this.player.symbol == symbol) {
+                    this.game.endMessage = 'You win!';
+                } else {
+                    this.game.endMessage = 'AI wins, better luck next time!';
+                }
+                this.game.endGame = true;
+            } else {
+                if (this.game.turnCount == 9) {
+                    this.game.endMessage = 'Tie game!';
+                    this.game.endGame = true;
+                } else {
+                    this.switchTurns();
+                }
+            }
+        },
+        checkWinner: function checkWinner(symbol) {
+            var i = this.game.board;
+            // top horizontal
+            if (i[0] == symbol && i[1] == symbol && i[2] == symbol) {
+                return true;
+                // middle horizontal
+            } else if (i[3] == symbol && i[4] == symbol && i[5] == symbol) {
+                return true;
+                // bottom horizontal
+            } else if (i[6] == symbol && i[7] == symbol && i[8] == symbol) {
+                return true;
+                // left vertical
+            } else if (i[0] == symbol && i[3] == symbol && i[6] == symbol) {
+                return true;
+                // middle vertical
+            } else if (i[1] == symbol && i[4] == symbol && i[7] == symbol) {
+                return true;
+                // right vertical
+            } else if (i[2] == symbol && i[5] == symbol && i[8] == symbol) {
+                return true;
+                // sw<->ne diagonal 
+            } else if (i[2] == symbol && i[4] == symbol && i[6] == symbol) {
+                return true;
+                // se<->nw diagonal
+            } else if (i[0] == symbol && i[4] == symbol && i[8] == symbol) {
+                return true;
+                // no winner
+            } else {
+                return false;
+            }
+        },
+        restartGame: function restartGame() {
+            // reset everything to default
+            this.player.symbol = '';
+            this.player.chosen = false;
+            this.ai.symbol = '';
+            this.game.turn = 'X';
+            this.game.turnCount = 0;
+            this.game.endGame = false;
+            this.game.endMessage = '';
+            this.game.board = ['', '', '', '', '', '', '', '', ''];
         }
     }
 });
@@ -44917,11 +45004,156 @@ var render = function() {
             [_vm._v("O")]
           )
         ])
-      : _c("h4", [_vm._v("Good luck!")]),
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.game.turnCount < 9 && _vm.player.chosen && !_vm.game.endGame
+      ? _c("div", [
+          _c("h4", [_vm._v("You chose: " + _vm._s(_vm.player.symbol))]),
+          _vm._v(" "),
+          _vm.player.symbol == _vm.game.turn
+            ? _c("h4", [_vm._v("Your turn!")])
+            : _c("h4", [_vm._v("AI's turn!")])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.game.endGame
+      ? _c("div", [
+          _c("h4", [_vm._v(_vm._s(_vm.game.endMessage))]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-dark",
+              on: {
+                click: function($event) {
+                  _vm.restartGame()
+                }
+              }
+            },
+            [_vm._v("Play again")]
+          )
+        ])
+      : _vm._e(),
     _vm._v(" "),
     _c("br"),
     _vm._v(" "),
-    _vm._m(1, false, false)
+    _c("div", [
+      _c("table", { staticClass: "gameTable mx-auto" }, [
+        _c("tr", { attrs: { id: "tableRow" } }, [
+          _c(
+            "td",
+            {
+              on: {
+                click: function($event) {
+                  _vm.tryTurn(0)
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.game.board[0]))]
+          ),
+          _vm._v(" "),
+          _c(
+            "td",
+            {
+              on: {
+                click: function($event) {
+                  _vm.tryTurn(1)
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.game.board[1]))]
+          ),
+          _vm._v(" "),
+          _c(
+            "td",
+            {
+              on: {
+                click: function($event) {
+                  _vm.tryTurn(2)
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.game.board[2]))]
+          )
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _c(
+            "td",
+            {
+              on: {
+                click: function($event) {
+                  _vm.tryTurn(3)
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.game.board[3]))]
+          ),
+          _vm._v(" "),
+          _c(
+            "td",
+            {
+              on: {
+                click: function($event) {
+                  _vm.tryTurn(4)
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.game.board[4]))]
+          ),
+          _vm._v(" "),
+          _c(
+            "td",
+            {
+              on: {
+                click: function($event) {
+                  _vm.tryTurn(5)
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.game.board[5]))]
+          )
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _c(
+            "td",
+            {
+              on: {
+                click: function($event) {
+                  _vm.tryTurn(6)
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.game.board[6]))]
+          ),
+          _vm._v(" "),
+          _c(
+            "td",
+            {
+              on: {
+                click: function($event) {
+                  _vm.tryTurn(7)
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.game.board[7]))]
+          ),
+          _vm._v(" "),
+          _c(
+            "td",
+            {
+              on: {
+                click: function($event) {
+                  _vm.tryTurn(8)
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.game.board[8]))]
+          )
+        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -44930,38 +45162,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h3", [_vm._v(_vm._s(_vm.message))])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("table", { staticClass: "gameTable mx-auto" }, [
-        _c("tr", { attrs: { id: "tableRow" } }, [
-          _c("td", { attrs: { id: "0" } }),
-          _vm._v(" "),
-          _c("td", { attrs: { id: "1" } }),
-          _vm._v(" "),
-          _c("td", { attrs: { id: "2" } })
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("td", { attrs: { id: "3" } }),
-          _vm._v(" "),
-          _c("td", { attrs: { id: "4" } }),
-          _vm._v(" "),
-          _c("td", { attrs: { id: "5" } })
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("td", { attrs: { id: "6" } }),
-          _vm._v(" "),
-          _c("td", { attrs: { id: "7" } }),
-          _vm._v(" "),
-          _c("td", { attrs: { id: "8" } })
-        ])
-      ])
-    ])
   }
 ]
 render._withStripped = true

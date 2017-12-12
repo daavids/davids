@@ -12897,6 +12897,10 @@ nav.footer h5 {
   border: 1px solid #080f0f;
 }
 
+.gameTable td:hover {
+  background-color: #eff2c0 !important;
+}
+
 .gameTable td:first-of-type {
   border-left-color: transparent;
   border-top-color: transparent;
