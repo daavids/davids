@@ -44969,7 +44969,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "text-center", attrs: { id: "game" } }, [
+  return _c("div", { staticClass: "text-center", attrs: { id: "ticTacToe" } }, [
     _vm._m(0, false, true),
     _vm._v(" "),
     _c("hr"),
@@ -44981,7 +44981,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "btn btn-dark",
+              staticClass: "btn btn-dark mx-2",
               on: {
                 click: function($event) {
                   _vm.chooseSymbol("X")
@@ -44994,7 +44994,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "btn btn-dark",
+              staticClass: "btn btn-dark mx-2",
               on: {
                 click: function($event) {
                   _vm.chooseSymbol("O")
@@ -45023,7 +45023,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "btn btn-dark",
+              staticClass: "btn btn-dark mx-2 restartBtn",
               on: {
                 click: function($event) {
                   _vm.restartGame()

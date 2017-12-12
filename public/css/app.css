@@ -12880,6 +12880,16 @@ nav.footer h5 {
   margin-left: 3px !important;
 }
 
+#ticTacToe button {
+  font-size: 1.5rem !important;
+  height: 60px !important;
+  width: 60px !important;
+}
+
+#ticTacToe button.restartBtn {
+  width: 180px !important;
+}
+
 .gameTable {
   width: 50% !important;
 }
@@ -12895,6 +12905,7 @@ nav.footer h5 {
 .gameTable td {
   width: 33.333% !important;
   border: 1px solid #080f0f;
+  font-size: 2.5em !important;
 }
 
 .gameTable td:hover {

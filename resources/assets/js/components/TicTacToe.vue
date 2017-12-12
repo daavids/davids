@@ -1,11 +1,11 @@
 <template>
-    <div id='game' class='text-center'>
+    <div id='ticTacToe' class='text-center'>
         <h3 v-once>{{message}}</h3>
         <hr>
         <div v-if='player.chosen==false'>
             <h4>Choose your symbol (X goes first)</h4>
-            <button @click='chooseSymbol("X")' class='btn btn-dark'>X</button>
-            <button @click='chooseSymbol("O")' class='btn btn-dark'>O</button>
+            <button @click='chooseSymbol("X")' class='btn btn-dark mx-2'>X</button>
+            <button @click='chooseSymbol("O")' class='btn btn-dark mx-2'>O</button>
         </div>
         <div v-if='game.turnCount < 9 && player.chosen && !game.endGame'>
             <h4>You chose: {{player.symbol}}</h4>
@@ -14,7 +14,7 @@
         </div>
         <div v-if='game.endGame'>
             <h4>{{game.endMessage}}</h4>
-            <button @click='restartGame()' class='btn btn-dark'>Play again</button>
+            <button @click='restartGame()' class='btn btn-dark mx-2 restartBtn'>Play again</button>
         </div>
         <br>
         <div>
