@@ -10,7 +10,6 @@ html, body {
 
 body {
     padding-top: 60px !important;
-
     #app {
         margin-bottom: 60px !important;
     }
@@ -27,7 +26,6 @@ hr {
 
 h1, h2, h3 {
     color: $mainColor !important;
-
     a {
         color: $mainColor !important;
         text-decoration: none !important;
@@ -115,7 +113,6 @@ nav {
     width: 50% !important; 
     tr {
         width: 100% !important;
-
         &:nth-of-type(3) td {
             border-bottom-color: transparent;
         }
@@ -124,7 +121,6 @@ nav {
         width: 33.333% !important;
         border: $mainBorder1px;
         font-size: 2.5em !important;
-
         &:hover {
             background-color: $secondaryColor !important;
         }
