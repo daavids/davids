@@ -18,4 +18,4 @@ Website
 ----Dashboard - create, edit or delete posts.  
 ----Logout.  
   
-More things might be added later.
+More things might be added later. 
