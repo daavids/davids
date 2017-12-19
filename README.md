@@ -11,7 +11,7 @@ Website
 ----Edit - Edit post(if you're the author), available only when viewing a specific post or user dashboard atm.  
 ----Delete - Delete post(if you're the author), available only when viewing a specific post or user dashboard atm.  
 --Games(N/A) - Simple html5/js games.  
---Websites(N/A) - Other sites by author.  
+--Projects(N/A) - Other sites by author.  
 --Laravel - The default welcome Laravel page that has information about the framework.  
 --Login & Register - Replaced with a user dropdown menu if logged in.  
 --User dropdown menu - shows only when logged in.  
