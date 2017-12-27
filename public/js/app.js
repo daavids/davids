@@ -45124,6 +45124,28 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -45132,11 +45154,274 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+var Cell = function Cell() {
+    _classCallCheck(this, Cell);
+
+    this.label = '';
+    this.color = 'blue';
+    this.bgColor = 'whitesmoke';
+    this.x = 0;
+    this.y = 0;
+    this.opened = false;
+    this.flagged = false;
+    this.bomb = false;
+    this.neighbors = [];
+    this.nearbyBombs = 0;
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            message: 'Made using Vue.js'
+            message: 'Made using Vue.js',
+            game: {
+                started: false,
+                over: false,
+                endStatus: ''
+            },
+            board: {
+                // defaults
+                rowCount: 10,
+                bombCount: 12,
+                cellCount: 0,
+                openedCells: 0,
+                cells: [],
+                bombs: [],
+                cellSize: '46px'
+            }
         };
+    },
+
+    methods: {
+        startGame: function startGame() {
+            if (this.game.over) {
+                this.resetGame();
+            }
+            this.game.started = true;
+            this.drawBoard(); // draw the board
+            this.addEventHandlers(); // cell clicks
+            this.pushCells(); // generate cells and fill the cell array
+            this.generateBombs(); // turn X cells into bombs
+            this.getStats(); // assign neighbours and get nearby bomb counts
+            this.defaultStyle(); // style the board
+        },
+        resetGame: function resetGame() {
+            document.getElementById('mineTable').innerHTML = '';
+            this.game.over = false;
+            this.board.cells = [];
+            this.board.bombs = [];
+            this.board.cellCount = Math.pow(this.board.rowCount, 2) - this.board.bombCount;
+            this.board.openedCells = 0;
+        },
+        drawBoard: function drawBoard() {
+            var table = document.getElementById('mineTable');
+            var size = this.board.rowCount;
+            for (var i = 0; i < size; i++) {
+                var tr = document.createElement('tr');
+                for (var j = 0; j < size; j++) {
+                    var td = document.createElement('td');
+                    td.id = i.toString() + '-' + j.toString();
+                    td.innerHTML = '';
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+            }
+            this.setWidth(); // set constant cell size
+        },
+        setWidth: function setWidth() {
+            var tdWidth = document.querySelector('td').offsetWidth.toString() + 'px';
+            this.board.cellSize = tdWidth;
+        },
+        findCell: function findCell(y, x) {
+            return this.board.cells[y][x];
+        },
+        addEventHandlers: function addEventHandlers() {
+            // grab all td's and attach left/right click handlers
+            var td = document.getElementsByTagName('td');
+            for (var i = 0, n = td.length; i < n; i++) {
+                var self = td[i];
+                self.addEventListener('contextmenu', this.handleClick);
+                self.addEventListener('click', this.handleClick);
+            }
+        },
+        handleClick: function handleClick(e) {
+            e.preventDefault();
+            // get cell location
+            var cellId = e.target.id.split('-');
+            // find cell
+            var cell = this.findCell(cellId[0], cellId[1]);
+            // check which mouse btn was pressed
+            if (e.which == 1) {
+                // left
+                if (!cell.opened) {
+                    if (cell.bomb) {
+                        this.styleCell(cell);
+                        this.endGame('You lose!');
+                    } else {
+                        this.openCell(cell);
+                    }
+                }
+            } else if (e.which == 3) {
+                // right
+                this.turnIntoFlag(cell);
+            }
+        },
+        pushCells: function pushCells() {
+            var size = this.board.rowCount;
+            for (var i = 0; i < size; i++) {
+                var row = []; // turn board array into 2d array for easier traversing
+                this.board.cells.push(row);
+                for (var j = 0; j < size; j++) {
+                    var cell = new Cell();
+                    cell.y = i; //assign 'coordinates'
+                    cell.x = j;
+                    row.push(cell);
+                }
+            }
+        },
+        defaultStyle: function defaultStyle() {
+            var td = document.getElementsByTagName('td');
+            for (var i = 0, n = td.length; i < n; i++) {
+                td[i].style.height = this.board.cellSize;
+                td[i].style.backgroundColor = 'gray';
+            }
+        },
+        getNeighbors: function getNeighbors(cell) {
+            var size = this.board.rowCount;
+            var cells = this.board.cells;
+            var tempArray = [];
+
+            for (var i = cell.y - 1; i <= cell.y + 1; i++) {
+                // if trying to check for cells outside the board
+                if (i < 0 || i >= size) {
+                    continue;
+                }
+                for (var j = cell.x - 1; j <= cell.x + 1; j++) {
+                    // same as above
+                    if (j < 0 || j >= size) {
+                        continue;
+                    }
+                    // if checking itself 
+                    if (j == cell.x && i == cell.y) {
+                        continue;
+                    }
+                    tempArray.push(this.findCell(i, j));
+                }
+            }
+            cell.neighbors = tempArray;
+        },
+        turnIntoFlag: function turnIntoFlag(cell) {
+            if (!cell.opened) {
+                cell.flagged = true;
+                cell.label = '?';
+                cell.color = 'red';
+                cell.bgColor = 'whitesmoke';
+                this.styleCell(cell);
+            } else if (cell.flagged) {
+                // if already flagged, back to default look
+                cell.label = '';
+                cell.color = 'blue';
+                cell.bgColor = 'whitesmoke';
+                this.styleCell(cell);
+            }
+        },
+        turnIntoBomb: function turnIntoBomb(cell) {
+            cell.bomb = true;
+            cell.label = 'X';
+            cell.color = 'black';
+            cell.bgColor = 'red';
+        },
+        generateBombs: function generateBombs() {
+            var count = this.board.bombCount;
+            var i = 0;
+            while (i < count) {
+                var x = Math.floor(Math.random() * this.board.rowCount);
+                var y = Math.floor(Math.random() * this.board.rowCount);
+                var randCell = this.board.cells[y][x];
+                if (!randCell.bomb) {
+                    this.turnIntoBomb(randCell);
+                    this.board.bombs.push(randCell);
+                } else {
+                    // if cell already is a bomb, find new random cell(s)
+                    var isBomb = true;
+                    while (isBomb) {
+                        x = Math.floor(Math.random() * this.board.rowCount);
+                        y = Math.floor(Math.random() * this.board.rowCount);
+                        randCell = this.board.cells[y][x];
+                        // if not a bomb, turn it into a bomb and exit the nested loop
+                        if (!randCell.bomb) {
+                            this.turnIntoBomb(randCell);
+                            this.board.bombs.push(randCell);
+                            isBomb = false;
+                        }
+                    }
+                }
+                i++;
+            }
+        },
+        getBombCount: function getBombCount(cell) {
+            for (var i = 0, n = cell.neighbors.length; i < n; i++) {
+                if (cell.neighbors[i].bomb) {
+                    cell.nearbyBombs += 1;
+                }
+            }
+            if (!cell.bomb) {
+                cell.label = cell.nearbyBombs;
+                cell.color = 'blue';
+            }
+        },
+        getStats: function getStats() {
+            var size = this.board.rowCount;
+            for (var i = 0; i < size; i++) {
+                for (var j = 0; j < size; j++) {
+                    var cell = this.findCell(i, j);
+                    this.getNeighbors(cell);
+                    this.getBombCount(cell);
+                }
+            }
+        },
+        openCell: function openCell(cell) {
+            cell.opened = true;
+            this.styleCell(cell);
+            // if 0 nearby bombs, open all neighbor cells
+            if (cell.nearbyBombs == 0) {
+                for (var i = 0, n = cell.neighbors.length; i < n; i++) {
+                    if (!cell.neighbors[i].opened) {
+                        this.openCell(cell.neighbors[i]);
+                    }
+                }
+            }
+            this.board.openedCells++;
+            if (this.board.openedCells === this.board.cellCount) {
+                this.endGame('You win!');
+            }
+        },
+        styleCell: function styleCell(cell) {
+            var cellId = cell.y + '-' + cell.x;
+            var tdToStyle = document.getElementById(cellId);
+            tdToStyle.style.backgroundColor = cell.bgColor;
+            tdToStyle.style.color = cell.color;
+            tdToStyle.innerHTML = cell.label;
+            tdToStyle.style.height = this.board.cellSize; // to keep constant cell size
+        },
+        openAllCells: function openAllCells() {
+            for (var y = 0; y < this.board.rowCount; y++) {
+                for (var x = 0; x < this.board.rowCount; x++) {
+                    this.openCell(this.findCell(y, x));
+                }
+            }
+            this.endGame('You win by cheating!');
+        },
+        endGame: function endGame(status) {
+            this.game.endStatus = status;
+            this.game.started = false;
+            this.game.over = true;
+        }
+    },
+    mounted: function mounted() {
+        this.$nextTick(function () {
+            // do stuff
+        });
     }
 });
 
@@ -45151,7 +45436,141 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "text-center", attrs: { id: "minesweeper" } },
-    [_vm._m(0, false, true), _vm._v(" "), _c("hr")]
+    [
+      _vm._m(0, false, true),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      !_vm.game.started
+        ? _c("div", [
+            _c("div", [
+              _c("h4", [_vm._v("Size: ")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.board.rowCount,
+                      expression: "board.rowCount"
+                    }
+                  ],
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.board,
+                        "rowCount",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", [_vm._v("10")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("15")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("20")])
+                ]
+              ),
+              _vm._v(" "),
+              _c("h4", [_vm._v("Bombs: ")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.board.bombCount,
+                      expression: "board.bombCount"
+                    }
+                  ],
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.board,
+                        "bombCount",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", [_vm._v("12")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("18")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("24")])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-dark",
+                on: {
+                  click: function($event) {
+                    _vm.startGame()
+                  }
+                }
+              },
+              [_vm._v("Play")]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("table", {
+        staticClass: "mx-auto",
+        staticStyle: { "table-layout": "fixed" },
+        attrs: { id: "mineTable" }
+      }),
+      _vm._v(" "),
+      _vm.game.started
+        ? _c(
+            "button",
+            {
+              staticClass: "btn btn-dark m-2",
+              on: {
+                click: function($event) {
+                  _vm.openAllCells()
+                }
+              }
+            },
+            [_vm._v("Cheat")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.game.over
+        ? _c("h3", [_c("br"), _vm._v(_vm._s(_vm.game.endStatus))])
+        : _vm._e()
+    ]
   )
 }
 var staticRenderFns = [

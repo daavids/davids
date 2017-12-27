@@ -137,3 +137,11 @@ nav {
         }        
     }
 }
+// minesweeper
+#mineTable {
+    margin-top: 30px !important;
+    width: 50% !important;
+    td {
+        border: $mainBorder1px;
+    }
+}
