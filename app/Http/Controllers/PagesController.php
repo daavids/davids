@@ -12,16 +12,17 @@ class PagesController extends Controller
             'technologies'=>['PHP7 (Laravel)', 
                             'HTML5', 
                             'CSS3 (SASS, Bootstrap4)', 
-                            'JavaScript (jQuery, Vue)',
+                            'JavaScript (Vue)',
                             'MySQL'],
-            'todo'=>['Games - Tic-Tac-Toe, Minesweeper, ???', 
+            'todo'=>['More games?', 
                     'Project section', 
                     'Template customisation',
                     'Design',
                     'Remake landing page'],
             'done'=>['Blog - browse, edit, create, delete posts', 
                     'User registration',
-                    'Navigation (kinda)']
+                    'Navigation (sort of)',
+                    'Games: Tic-Tac-Toe, Minesweeper']
         );
         return view('pages.index')->with($data);
     }
