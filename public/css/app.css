@@ -12926,3 +12926,12 @@ nav.footer h5 {
   border-top-color: transparent;
 }
 
+#mineTable {
+  margin-top: 30px !important;
+  width: 50% !important;
+}
+
+#mineTable td {
+  border: 1px solid #080f0f;
+}
+
