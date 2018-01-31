@@ -15,11 +15,10 @@
                         <div>
                             <h3>{{$row}}</h3>
                         </div>
-                        <a class='btn btn-dark mt-auto' href='/{{strtolower($row)}}'>Play</a>
+                        <a class='btn btn-success mt-auto' href='/{{strtolower($row)}}'>Play</a>
                     </div>
                 </div>
             </div>
-            <br>
         @endforeach
     @else
         <p>No games found</p>

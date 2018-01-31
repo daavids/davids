@@ -3,9 +3,6 @@
 @section('title', $post->title. ' - edit')
 
 @section('content')
-    <br>
-    <a href='javascript:history.back()' class= 'btn btn-dark'>Go back</a>
-    <br><br> 
     <h1>Edit post</h1>
     {!! Form::open(['action' => ['PostsController@update', $post->id], 
                     'method' => 'POST', 
@@ -22,6 +19,6 @@
             {{Form::file('cover_image')}}
         </div>
         {{Form::hidden('_method', 'PUT')}}
-        {{Form::submit('Submit', ['class' => 'btn btn-dark'])}}
+        {{Form::submit('Submit', ['class' => 'btn btn-success'])}}
     {!! Form::close() !!}
 @endsection

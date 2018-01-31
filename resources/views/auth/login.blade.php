@@ -66,7 +66,7 @@
 
                         <div class="form-group row">
                             <div class="col-lg-8 offset-lg-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-dark">
                                     Login
                                 </button>
 

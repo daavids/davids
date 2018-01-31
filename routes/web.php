@@ -41,6 +41,7 @@ Route::get('/minesweeper', function() {
 // About Laravel
 Route::view('/laravel', 'welcome');
 
+Route::resource('messages', 'MessagesController');
 
 Route::resource('posts', 'PostsController');
 Auth::routes();

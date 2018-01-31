@@ -3,9 +3,6 @@
 @section('title', 'Create post')
 
 @section('content')
-    <br>
-    <a href='javascript:history.back()' class= 'btn btn-dark'>Go back</a>
-    <br><br> 
     <h1>Create post</h1>
     {!! Form::open(['action' => 'PostsController@store',
                     'method' => 'POST', 
@@ -24,6 +21,6 @@
         <div class="form-group">
             {{Form::file('cover_image')}}
         </div>
-        {{Form::submit('Submit', ['class' => 'btn btn-dark'])}}
+        {{Form::submit('Submit', ['class' => 'btn btn-success'])}}
     {!! Form::close() !!} 
 @endsection

@@ -1,18 +1,14 @@
-$mainColor: #080f0f;
+$mainColor: #2ab27b;
 $secondaryColor: #eff2c0;
 $darkBtn: #343a40;
 $mainBorder2px: 2px solid $mainColor;
 $mainBorder1px: 1px solid $mainColor;
 
-html, body {
-    height: 100% !important;
-}
-
 body {
-    padding-top: 60px !important;
-    #app {
-        margin-bottom: 60px !important;
-    }
+    padding-bottom: 200px;
+}
+.container {
+    padding-top: 120px !important;
 }
 
 img {
@@ -32,9 +28,29 @@ h1, h2, h3 {
     }
 }
 
+.heading {
+    margin-bottom: 60px;
+    .btn {
+        width: 90px;
+        margin: 4px;
+    }
+}
+
+.projects, .skills, .contact {
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.card-body {
+    margin-bottom: 30px;
+}
+
 //navbars(footer & header)
 nav {
-    background-color: $mainColor !important; 
+    &.navbar{
+        height: 60px;
+        background-color: $mainColor !important; 
+    }
     // navbar links
     li.nav-item > a, .navbar-brand {
         color: white !important;
@@ -66,20 +82,14 @@ nav {
             padding-top: 10px !important;
             padding-bottom: 10px !important;
         }
-    }
-    &.footer {
-        width: 100%;      
-        h5 {
-            color: white !important;
-            margin-bottom: 0 !important;
-        }
-    }   
+    } 
 }
 //dashboard
 .card-header {
     background-color: $mainColor !important;
     color: white !important;
 }
+
 .dashTable {
     th{
         background-color: $darkBtn !important;
@@ -89,15 +99,18 @@ nav {
         background-color: $secondaryColor !important;
     }
 }
+
 .dashPostLink {
     color: $mainColor !important;
 }
+
 //blog page
 .pagination li {
     font-size: 1.2rem !important;
     margin-right: 3px !important;
     margin-left: 3px !important;
 }
+
 //tic-tac-toe
 #ticTacToe {
     button {

@@ -13049,17 +13049,12 @@ a.text-dark:focus {
   clip: auto;
 }
 
-html,
 body {
-  height: 100% !important;
+  padding-bottom: 200px;
 }
 
-body {
-  padding-top: 60px !important;
-}
-
-body #app {
-  margin-bottom: 60px !important;
+.container {
+  padding-top: 120px !important;
 }
 
 img {
@@ -13068,24 +13063,45 @@ img {
 }
 
 hr {
-  border-top: 1px solid #080f0f;
+  border-top: 1px solid #2ab27b;
 }
 
 h1,
 h2,
 h3 {
-  color: #080f0f !important;
+  color: #2ab27b !important;
 }
 
 h1 a,
 h2 a,
 h3 a {
-  color: #080f0f !important;
+  color: #2ab27b !important;
   text-decoration: none !important;
 }
 
-nav {
-  background-color: #080f0f !important;
+.heading {
+  margin-bottom: 60px;
+}
+
+.heading .btn {
+  width: 90px;
+  margin: 4px;
+}
+
+.projects,
+.skills,
+.contact {
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+.card-body {
+  margin-bottom: 30px;
+}
+
+nav.navbar {
+  height: 60px;
+  background-color: #2ab27b !important;
 }
 
 nav li.nav-item > a,
@@ -13104,13 +13120,13 @@ nav .navbar-toggler {
 }
 
 nav ul.dropdown-menu {
-  border: 2px solid #080f0f !important;
+  border: 2px solid #2ab27b !important;
   padding: 0 !important;
 }
 
 nav ul.dropdown-menu .dropdown-divider {
-  color: #080f0f !important;
-  border-top: 2px solid #080f0f !important;
+  color: #2ab27b !important;
+  border-top: 2px solid #2ab27b !important;
   margin: 0 !important;
 }
 
@@ -13124,17 +13140,8 @@ nav ul.dropdown-menu .dropdown-item:hover {
   background-color: #eff2c0 !important;
 }
 
-nav.footer {
-  width: 100%;
-}
-
-nav.footer h5 {
-  color: white !important;
-  margin-bottom: 0 !important;
-}
-
 .card-header {
-  background-color: #080f0f !important;
+  background-color: #2ab27b !important;
   color: white !important;
 }
 
@@ -13148,7 +13155,7 @@ nav.footer h5 {
 }
 
 .dashPostLink {
-  color: #080f0f !important;
+  color: #2ab27b !important;
 }
 
 .pagination li {
@@ -13181,7 +13188,7 @@ nav.footer h5 {
 
 .gameTable td {
   width: 33.333% !important;
-  border: 1px solid #080f0f;
+  border: 1px solid #2ab27b;
   font-size: 2.5em !important;
 }
 
@@ -13209,6 +13216,6 @@ nav.footer h5 {
 }
 
 #mineTable td {
-  border: 1px solid #080f0f;
+  border: 1px solid #2ab27b;
 }
 
