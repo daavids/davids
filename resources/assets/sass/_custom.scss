@@ -47,16 +47,23 @@ h1, h2, h3 {
 
 //navbars(footer & header)
 nav {
-    &.navbar{
-        height: 60px;
-        background-color: $mainColor !important; 
-    }
+    height: 60px;
+    background-color: $mainColor !important; 
     // navbar links
-    li.nav-item > a, .navbar-brand {
-        color: white !important;
-        text-decoration: none !important;
-        &:hover {
-            color: $secondaryColor !important;
+    li {
+        &.nav-item {
+            background-color: $mainColor !important;
+            border-bottom: 2px solid white;
+            & > a {
+                padding-left: 8px !important;
+            }
+        }
+        &.nav-item > a, .navbar-brand {
+            color: white !important;
+            text-decoration: none !important;
+            &:hover {
+                color: $secondaryColor !important;
+            }
         }
     }
     // collapsed navbar icon
