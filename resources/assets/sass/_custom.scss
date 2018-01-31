@@ -53,7 +53,6 @@ nav {
     li {
         &.nav-item {
             background-color: $mainColor !important;
-            border-bottom: 2px solid white;
             & > a {
                 padding-left: 8px !important;
             }
