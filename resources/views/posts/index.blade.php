@@ -16,7 +16,7 @@
                             <h3>{{$row->title}}</h3>
                             <small>Written on {{$row->created_at}} by {{$row->user->name}}</small>
                         </div>
-                        <a class='btn btn-dark mt-auto' href='/posts/{{$row->id}}'>Read</a>
+                        <a class='btn btn-success mt-auto' href='/posts/{{$row->id}}'>Read</a>
                     </div>
                 </div>
             </div>

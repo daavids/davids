@@ -21,8 +21,6 @@
         @yield('content')
     </div>
 </div>
-@include('inc.footer')
-
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
@@ -30,6 +28,28 @@
     if(document.getElementById('article-ckeditor')) {
         CKEDITOR.replace( 'article-ckeditor' );
     }
-</script> 
+</script>
+<script>
+    let scroll = new SmoothScroll();
+
+    let scrollWithoutUrlChange = (selector, settings) => {
+
+        let clickHandler = (event) => {
+
+            let toggle = event.target.closest(selector);
+            if (!toggle || toggle.tagName.toLowerCase() !== 'a') { return; }
+            let anchor = document.querySelector(toggle.hash);
+            if (!anchor) { return; }
+
+            event.preventDefault();
+            scroll.animateScroll(anchor, toggle, settings || {});
+        };
+        window.addEventListener('click', clickHandler, false);
+    };
+
+    scrollWithoutUrlChange('a[href*="#"]', {
+        offset: 70
+    });
+</script>
 </body>
 </html>

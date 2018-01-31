@@ -14,10 +14,8 @@
     <div class='collapse navbar-collapse' id='app-navbar-collapse'>
         <!-- Left Side Of Navbar -->
         <ul class='navbar-nav'>
-            <li class='nav-item'><a class='nav-link' href='#'>Theme</a></li>
             <li class='nav-item'><a class='nav-link' href='/posts'>Blog</a></li>
             <li class='nav-item'><a class='nav-link' href='/games'>Games</a></li>
-            <li class='nav-item'><a class='nav-link' href='#'>Projects</a></li>
             <li class='nav-item'><a class='nav-link' href='/laravel'>Laravel</a></li>
         </ul>
 
@@ -25,7 +23,7 @@
         <ul class='navbar-nav ml-auto'>
             <!-- Authentication Links -->
             @guest
-                <li class='nav-item'><a class='nav-link' href='{{ route('login') }}'>Login</a></li>
+                <li class='nav-item'><a class='nav-link' href='{{ route('login') }}'>Log in</a></li>
                 <li class='nav-item'><a class='nav-link' href='{{ route('register') }}'>Register</a></li>
             @else
                 <li class='nav-item dropdown'>

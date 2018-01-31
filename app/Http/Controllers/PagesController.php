@@ -3,26 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Project;
 
 class PagesController extends Controller
 {
     public function index() {
+        $projects = Project::all();
         $data = array(
-            'heading'=>'Welcome',
-            'technologies'=>['PHP7 (Laravel)', 
-                            'HTML5', 
-                            'CSS3 (SASS, Bootstrap4)', 
-                            'JavaScript (Vue)',
-                            'MySQL'],
-            'todo'=>['More games?', 
-                    'Project section', 
-                    'Template customisation',
-                    'Design',
-                    'Remake landing page'],
-            'done'=>['Blog - browse, edit, create, delete posts', 
-                    'User registration',
-                    'Navigation (sort of)',
-                    'Games: Tic-Tac-Toe, Minesweeper']
+            'heading'=>'Dāvids Gabaliņš',
+            'skills'=>['PHP7 (Laravel)', 
+                        'HTML5', 
+                        'CSS3 (SASS, Bootstrap, W3CSS)', 
+                        'JavaScript (jQuery, VueJS)',
+                        'MySQL',
+                        'GIT', 
+                        'Basic sysadmin skills (setting up mail clients, domains, hosting etc.)'],
+            'projects'=>$projects      
         );
         return view('pages.index')->with($data);
     }
